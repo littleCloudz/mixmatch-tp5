@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Theming - Semantic</title>
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-master/dist/semantic.css">
+    <script src="../Semantic-UI-master/examples/assets/library/jquery.min.js"></script>
+    <script src="../Semantic-UI-master/dist/semantic.js"></script>
+    <!--- Example CSS -->
+    <style>
+body {
+        padding: 1em;
+    }
+
+    .ui.grid {
+        margin: 0;
+    }
+
+    .ui.grid>.column:not(.row),
+    .ui.grid>.row>.column {
+        padding: 0;
+    }
+
+    .ui.grid>.row {
+        padding: 0;
+    }
+    /*.ui.three.column.grid img {*/
+
+    .ui.one.cards img {
+        max-width: 100%;
+    }
+
+    .ui.corner.label {
+        z-index: 9;
+    }
+
+    .ui.striped.right.aligned.table {
+        border: none;
+    }
+    /*    .extra.content {
+      height: 3rem;
+      line-height: 3rem;
+    }*/
+
+    .toggleview i {
+        font-size: 2.2rem;
+    }
+
+    .compare .ui.move.reveal .visible.content {
+        width: 50%;
+    }
+
+    .compare .ui.move.reveal.image .hidden.content {
+        width: 50%!important;
+        transform: translateX(100%);
+    }
+
+    .canuse {
+        color: #00B5AD;
+    }
+
+    .cantuse {
+        color: #DB2828;
+    }
+
+    .canbuy {
+        color: #E03997;
+    }
+
+    .lookfor {
+        color: #767676;
+    }
+
+    .ui.segment.dimmable {
+        padding: 0;
+    }
+
+    .ui.inverted.button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 100%;
+        height: 100%;
+    }
+
+    .ui.inverted.button .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 3rem;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .ui.fixed.table th,
+    .ui.fixed.table td {
+        overflow: initial;
+    }
+    input.update {
+        font-size:  initial;
+        position: absolute;
+        z-index: 9;
+    }
+    .ui.corner.label {
+        z-index: 80;
+    }
+    /*td.skuselectiontd {
+        position: fixed;
+        z-index: 1010;
+        top:50%;
+        left:50%;
+        transform:translateX(-50%) translateY(-50%);
+    }
+    .ui#skuselection {
+        transform: translateX(-50%) translateY(-50%);
+        max-height: initial;
+        min-width: initial;
+        border: 1px solid blue;
+        margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    /*position: static !important;*/
+    /*position: fixed !important;
+    margin: 3.5rem auto !important;
+    visibility: visible !important;
+    font-size: 1rem;
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    top: 50%;
+    left: 50%;
+    text-align: left;
+    background: #FFFFFF;
+    border: none;
+    box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.2), 1px 3px 15px 2px rgba(0, 0, 0, 0.2);
+    -webkit-transform-origin: 50% 25%;
+    transform-origin: 50% 25%;
+    border-radius: 0.28571429rem;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    will-change: top, left, margin, transform, opacity;
+
+    }
+    @media only screen and (max-width: 767px) {
+       .ui#skuselection {
+            width: 95%;
+       }  
+    }
+
+    .image.content.skupanel {
+        border: 1px solid red;
+    }*/
+}
+)
+    </style>
+    <!--- Example Javascript -->
+    <script>
+    $(document)
+        .ready(function() {
+            $('.special.card .image').dimmer({
+                on: 'hover'
+            });
+            $('.star.rating')
+                .rating();
+            $('.card .dimmer')
+                .dimmer({
+                    on: 'hover'
+                });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div class="ui sticky" >
+          <div class="ui fluid three item tabular menu">
+            <a class="active item">选项卡 1</a>
+            <a class="item">选项卡 2</a>
+            <a class="item">选项卡 3</a>
+          </div>
+        </div>
+ -->
+        <div class="ui one cards">
+            <div class="ui card">
+                <div class="content transition sku">
+                    <table class="ui striped fixed right aligned table padded ">
+                        <thead>
+                            <tr>
+                                <th class="left aligned"></th>
+                                <th class="left aligned">参考</th>
+                                <th class="left aligned">名称</th>
+                                <th class="left aligned" style="width:20rem;">相关单品</th>
+                                <th class="left aligned">价格</th>
+                                <th class="left aligned">类别</th>
+                                <th class="left aligned">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                     <td class="left aligned">
+                                        <input class="text" type="file" style="width:200px" value="" name="photo" id="photo">
+                                    </td>
+                                    <td class="left aligned">
+                                        <input class="text" type="file" style="width:200px" value="" name="photoModel" id="photoModel">
+                                    </td>
+                                    <td>
+                                        <div class="ui fluid input transparent">
+                                            <textarea v-model="newskumix.skuName" type="text" placeholder="名称"></textarea>
+                                        </div>
+                                    </td>
+                                    <td class="skuselectiontd">
+                                        <skuselection :skulistprop="skulistavailable" skumixid="" @skuselected="skuSelectionHandler"></skuselection>
+                                    </td>
+                                    <td>
+                                        <div class="ui fluid transparent input">
+                                            <textarea type="text" placeholder="价格" v-model="newskumix.price"></textarea>
+                                            <!-- <input type="text" placeholder="价格" v-model="newskumix.price"> -->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="ui fluid transparent input">
+                                            <textarea type="text" placeholder="类别" v-model="newskumix.skuType"></textarea>
+                                            <!-- <input type="text" placeholder="类别" v-model="newskumix.skuType"> -->
+                                        </div>
+                                    </td>
+                                    <td class="left aligned">
+                                        <button class="ui small button  fluid red " @click="saveSkuMix">保存</button>
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="ui one cards">
+            <div v-for="skumix in skumixlist" class="ui card skumixid" :data-skumixid="skumix.id">
+                <p style="position:absolute;z-index:99;right:0;top:80px;">{{skumix.id}}</p>
+                <div class="ui corner label">
+                    <i class="asterisk icon" @click="togglePhotoModel"></i>
+                </div>
+                <div class="ui move reveal image canclick test">
+                    <div class="visible content">
+                        <input class="text update updatephoto" type="file" style="width:200px" value="" name="photo" placeholder="上传我的搭配">
+                        <img class="ui fluid image" :src="skumix.photo">
+                    </div>
+                    <div class="hidden content">
+                        <input class="text update updatephotomodel" type="file" style="width:200px" value="" name="photoModel" placeholder="上传原版搭配">
+                        <img class="ui fluid image" :src="skumix.photoModel">
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div data-rating="4" class="ui star rating left floated"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
+                    <button class="ui button orange mini" @click="updateSkuMix">更新</button>
+                    <span class="right floated" @click="toggleView"><i class="align justify icon"></i></span>
+                </div>
+                <div class="content transition sku">
+                    <div class="ui three column grid">
+                        <div v-for="sku in skumix.skuMixArray" :data-skumixid="skumix.id" :data-skuid="sku.barcode" class="column" @click="removeSku">
+                            <p style="position:absolute;top:0;left:0;">{{sku.barcode}}  ￥{{sku.price}}</p>
+                            <div class="ui segment">
+                                <img :src="sku.photo">
+                                <div class="ui dimmer">
+                                    <div class="content">
+                                        <div class="center">
+                                            <div class="ui two column grid">
+                                                <div class="column">
+                                                    <div class="ui inverted button"><span class="canuse"><i class="checkmark icon"></i></span></div>
+                                                </div>
+                                                <div class="column">
+                                                    <div class="ui inverted button"><span class="canuse"><i class="checkmark icon"></i></span></div>
+                                                </div>
+                                                <div class="column"><img src="../Semantic-UI-master/examples/assets/images/avatar/tom.jpg"></div>
+                                                <div class="column"><img src="../Semantic-UI-master/examples/assets/images/avatar/tom.jpg"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="column">
+                            <div class="ui segment">
+                                <skuselection :skulistprop="skulistavailable" :skumixid="skumix.id" @skuselected="skuSelectionHandler"></skuselection>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content transition hidden sku">
+                    <table class="ui striped right aligned table">
+                        <thead>
+                            <tr>
+                                <th class="left aligned"></th>
+                                <th>状态</th>
+                                <th>尺码</th>
+                                <th>价格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="sku in skumix.skuMixArray">
+                                <td class="left aligned"><img :src="sku.photo"></td>
+                                <td><span class="cantuse"><i class="minus circle icon"></i></span></td>
+                                <td>35g</td>
+                                <td>6g</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/lib/underscore.min.js"></script>
+    <script src="../js/lib/vue.js"></script>
+    <script src="../js/controller/index.js"></script>
+</body>
+
+</html>

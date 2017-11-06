@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Theming - Semantic</title>
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-master/dist/semantic.css">
+    <script src="../Semantic-UI-master/examples/assets/library/jquery.min.js"></script>
+    <script src="../Semantic-UI-master/dist/semantic.js"></script>
+    <!--- Example CSS -->
+    <style>
+    body {
+        padding: 1em;
+    }
+
+    input {
+        border: none;
+    }
+
+    .ui.grid {
+        margin: 0;
+    }
+
+    .ui.grid>.column:not(.row),
+    .ui.grid>.row>.column {
+        padding: 0;
+    }
+
+    .ui.grid>.row {
+        padding: 0;
+    }
+    /*.ui.three.column.grid img {*/
+
+    .ui.one.cards img {
+        max-width: 100%;
+    }
+
+    .ui.corner.label {
+        z-index: 9;
+    }
+
+    .ui.striped.right.aligned.table {
+        border: none;
+    }
+    /*    .extra.content {
+      height: 3rem;
+      line-height: 3rem;
+    }*/
+
+    .toggleview i {
+        font-size: 2.2rem;
+    }
+
+    .compare .ui.move.reveal .visible.content {
+        width: 50%;
+    }
+
+    .compare .ui.move.reveal.image .hidden.content {
+        width: 50%!important;
+        transform: translateX(100%);
+    }
+
+    .canuse {
+        color: #00B5AD;
+    }
+
+    .cantuse {
+        color: #DB2828;
+    }
+
+    .canbuy {
+        color: #E03997;
+    }
+
+    .lookfor {
+        color: #767676;
+    }
+
+    .ui.segment.dimmable {
+        padding: 0;
+    }
+
+    .ui.inverted.button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 100%;
+        height: 100%;
+    }
+
+    .ui.inverted.button .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 3rem;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .ui.input textarea {
+        margin: 0em;
+        max-width: 100%;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        text-align: left;
+        line-height: 1.21428571em;
+        font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        padding: 0.67857143em 1em;
+        background: #FFFFFF;
+        border: 1px solid rgba(34, 36, 38, 0.15);
+        color: rgba(0, 0, 0, 0.87);
+        border-radius: 0.28571429rem;
+        -webkit-transition: box-shadow 0.1s ease, border-color 0.1s ease;
+        transition: box-shadow 0.1s ease, border-color 0.1s ease;
+        box-shadow: none;
+    }
+
+    .ui.transparent.input textarea {
+        resize: none;
+        border-color: transparent!important;
+        background-color: transparent!important;
+        padding: 0!important;
+        box-shadow: none!important;
+    }
+    /*--------------
+  Sidebar Button
+---------------*/
+
+    #example .fixed.launch.button {
+        display: none;
+        z-index: 9;
+        position: fixed;
+        top: 2.5em;
+        left: 0px;
+
+        width: 55px;
+        height: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        -webkit-transition: 0.3s width ease,
+        0.5s transform ease;
+        -moz-transition: 0.3s width ease,
+        0.5s transform ease;
+        -o-transition: 0.3s width ease,
+        0.5s transform ease;
+        -ms-transition: 0.3s width ease,
+        0.5s transform ease;
+        transition: 0.3s width ease,
+        0.5s transform ease;
+    }
+
+    #example .launch.button .icon {
+        margin-left: 0px;
+    }
+
+
+    #example .fixed.launch.button .text {
+        position: absolute;
+        white-space: nowrap;
+        top: auto;
+        left: 54px;
+        opacity: 0;
+        -webkit-transition: 0.3s opacity 0.3s;
+        -moz-transition: 0.3s opacity 0.3s;
+        -o-transition: 0.3s opacity 0.3s;
+        -ms-transition: 0.3s opacity 0.3s;
+        transition: 0.3s opacity 0.3s;
+    }
+
+    #example .fixed.launch.button:hover {
+        width: 130px;
+    }
+
+    #example .fixed.launch.button:hover .text {
+        opacity: 1;
+    }
+    /* Position Change */
+
+    #example.pushable.left.overlay .fixed.launch.button {
+        transform: translate3d(0, 0, 0);
+    }
+
+    #example.pushable.overlay.left.pushed .fixed.launch.button {
+        transform: translate3d(260px, 0, 0);
+    }
+
+    .ui.fluid.input {
+        flex-wrap: wrap;
+    }
+
+    @media only screen and (min-width: 380px) {
+        .skuphoto {
+            max-width: 200px;
+        }
+    }
+    .skuType {
+        width: 3rem;
+    }
+    .skuStatus {
+        width: 3rem;
+    }
+    td.unavailable {
+        position: relative;
+    }
+    td.unavailable::before {
+        font-family: 'Icons';
+        content: "\f00d";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform:translateX(-50%) translateY(-50%);
+        font-size: 6rem;
+        color: rgba(1,1,1,0.3);
+    }
+    td.unavailable::after {
+        font-family: 'Icons';
+        content: "";
+        /*content: "\f071";*/
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(1,1,1,0.2);
+    }
+    .ui.fixed.table th, .ui.fixed.table td {
+        overflow: initial;
+    }
+    )
+    </style>
+    <!--- Example Javascript -->
+    <script>
+    $(document)
+        .ready(function() {
+            $('.special.card .image').dimmer({
+                on: 'hover'
+            });
+            $('.star.rating')
+                .rating();
+            $('.card .dimmer')
+                .dimmer({
+                    on: 'hover'
+                });
+        });
+    </script>
+</head>
+
+        
+<body id="example">
+    <script type="text/x-template" id="sku-status-selects-template">
+        <div class="ui floating labeled dropdown button" tabindex="0">
+            <select>
+                <option value="">状态</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div class="default text">状态</div>
+            <i class="dropdown icon"></i>
+            <div class="menu" tabindex="-1">
+                <div class="item" data-value="1">
+                <span class="canuse">
+                        <i class="checkmark icon"></i>
+                </span>
+                </div>
+                <div class="item" data-value="2">
+                    <span class="cantuse">
+                        <i class="minus circle icon"></i>
+                    </span>
+                </div>
+                <div class="item" data-value="3">
+                    <span class="canbuy">
+                        <i class="shop icon"></i>
+                    </span>
+                </div>
+                <div class="item" data-value="4">
+                    <span class="lookfor">
+                        <i class="search icon"></i>
+                    </span>
+                </div>
+                <div class="item" data-value="5">
+                    <span class="dropped">
+                        <i class="remove circle utline icon"></i>
+                    </span>
+                </div>
+                
+            </div>
+        </div>
+    </script>
+    <script type="text/x-template" id="grid-template">
+      <table v-if="filteredData.length" class="ui fixed striped right aligned table ">
+        <thead>
+            <tr>
+                <th class="left aligned" v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">
+                    {{ key | capitalize }}
+                    <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+                                          </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template v-for="entry in filteredData">
+                <tr :data-skuid="entry.barcode">
+                    <td class="left aligned " :class="entry.skuStatus != 1 ? 'unavailable': '' ">
+                        <input class="text updatephoto" type="file" style="width:200px" value="" name="photo">
+                        <a v-if="entry.skuLink" :href="entry.skuLink" target="_blank"><img class="skuphoto" :src="entry.photo"></a>
+                        <img v-else class="skuphoto" :src="entry.photo">
+                    </td>
+                    <td class="left aligned" @click.once="activeDropdown">
+                        <sku-status-selects :selectedvalue="entry.skuStatus" :skuid="entry.barcode" @changeskustatus="vmodelSkuStatus"></sku-status-selects>
+                    </td>
+                    <td>
+                        <div class="ui fluid input transparent">
+                            <textarea v-model="entry.skuName" type="text" placeholder="名称"></textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ui fluid transparent input">
+                            <textarea type="text" placeholder="尺码" v-model="entry.size"></textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ui fluid transparent input">
+                            <textarea type="text" placeholder="价格" v-model="entry.price"></textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ui fluid transparent input">
+                            <textarea type="text" placeholder="品牌" v-model="entry.brand"></textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ui fluid transparent input">
+                            <textarea type="text" placeholder="渠道" v-model="entry.channel"></textarea>
+                        </div>
+                    </td>
+                    
+                    <td>
+                        <div class="ui fluid transparent input">
+                            <textarea type="text" placeholder="购买日期" v-model="entry.purchaseDate"></textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ui fluid transparent input">
+                            <textarea type="text" placeholder="类别" v-model="entry.skuType"></textarea>
+                        </div>
+                        <div class="ui fluid multiple search selection dropdown" @click.once="activeDropdown">
+                            <input type="hidden" name="country" value="">
+                            <i class="dropdown icon"></i>
+                            <input class="search" autocomplete="off" tabindex="0" style="width: 9px;"><span class="sizer"></span>
+                            <div class="default text">Select Country</div>
+                            <div class="menu transition hidden" tabindex="-1">
+                                <div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
+                                <div class="item selected" data-value="ax"><i class="ax flag"></i>Aland Islands</div>
+                                <div class="item" data-value="al"><i class="al flag"></i>Albania</div>
+                                <div class="item" data-value="dz"><i class="dz flag"></i>Algeria</div>
+                                <div class="item" data-value="as"><i class="as flag"></i>American Samoa</div>
+                                <div class="item" data-value="ad"><i class="ad flag"></i>Andorra</div>
+                                <div class="item" data-value="ao"><i class="ao flag"></i>Angola</div>
+                                <div class="item" data-value="ai"><i class="ai flag"></i>Anguilla</div>
+                                <div class="item" data-value="ag"><i class="ag flag"></i>Antigua</div>
+                                <div class="item" data-value="ar"><i class="ar flag"></i>Argentina</div>
+                                <div class="item" data-value="am"><i class="am flag"></i>Armenia</div>
+                            </div>
+                        </div>
+                        <div class="ui mini buttons fluid">
+                            <button class="ui button orange " @click="updateSku">更新</button>
+                            <div class="or"></div>
+                            <button class="ui button red" @click="deleteSku">删除</button>
+                            <div class="or"></div>
+                            <button class="ui button grey" @click="cancelSku">取消</button>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+    <p v-else>No matches found.</p>
+    </script>
+
+    <!-- demo root element -->
+   <!--  <div id="app">
+      
+    </div> -->
+    <!-- <div class="ui sticky" >
+          <div class="ui fluid three item tabular menu">
+            <a class="active item">选项卡 1</a>
+            <a class="item">选项卡 2</a>
+            <a class="item">选项卡 3</a>
+          </div>
+        </div>
+ -->
+
+        <!-- demo root element -->
+        
+<div id="app">
+    
+        <div class="ui black big launch right attached fixed button">
+            <i class="content icon"></i>
+            <span class="text">菜单</span>
+        </div>
+
+        <div class="ui one cards">
+            <div class="ui card">
+                <div class="content transition sku">
+                    <table class="ui striped fixed right aligned table padded ">
+                        <thead>
+                            <tr>
+                                <th class="left aligned"></th>
+                                <th class="left aligned">状态</th>
+                                <th class="left aligned">名称</th>
+                                <th class="left aligned">尺码</th>
+                                <th class="left aligned">搭配</th>
+                                <th class="left aligned">价格</th>
+                                <th class="left aligned">渠道</th>
+                                <th class="left aligned">品牌</th>
+                                <th class="left aligned">购买日期</th>
+                                <th class="left aligned">类别</th>
+                                <th class="left aligned">链接</th>
+                                <th class="left aligned">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="left aligned">
+                                    <input class="text" type="file" style="width:200px" value="" name="photo" id="photo">
+                                </td>
+                                <td class="left aligned" @click.once="activeDropdown">
+                                    <sku-status-selects :selectedvalue="newsku.skuStatus" :skuid="0" @changeskustatus="vmodelSkuStatus2"></sku-status-selects>
+                                </td>
+                                <td>
+                                    <div class="ui fluid input transparent">
+                                        <textarea v-model="newsku.skuName" type="text" placeholder="名称"></textarea>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid transparent input">
+                                        <textarea type="text" placeholder="尺码" v-model="newsku.size"></textarea>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid multiple search selection dropdown" @click.once="activeDropdown">
+                                        <input type="hidden" name="country" value="">
+                                        <i class="dropdown icon"></i>
+                                        <input class="search" autocomplete="off" tabindex="0" style="width: 9px;"><span class="sizer"></span>
+                                        <div class="default text">Select Country</div>
+                                        <div class="menu transition hidden" tabindex="-1">
+                                            <div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
+                                            <div class="item selected" data-value="ax"><i class="ax flag"></i>Aland Islands</div>
+                                            <div class="item" data-value="al"><i class="al flag"></i>Albania</div>
+                                            <div class="item" data-value="dz"><i class="dz flag"></i>Algeria</div>
+                                            <div class="item" data-value="as"><i class="as flag"></i>American Samoa</div>
+                                            <div class="item" data-value="ad"><i class="ad flag"></i>Andorra</div>
+                                            <div class="item" data-value="ao"><i class="ao flag"></i>Angola</div>
+                                            <div class="item" data-value="ai"><i class="ai flag"></i>Anguilla</div>
+                                            <div class="item" data-value="ag"><i class="ag flag"></i>Antigua</div>
+                                            <div class="item" data-value="ar"><i class="ar flag"></i>Argentina</div>
+                                            <div class="item" data-value="am"><i class="am flag"></i>Armenia</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid transparent input">
+                                        <textarea type="text" placeholder="价格" v-model="newsku.price"></textarea>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid transparent input">
+                                        <textarea type="text" placeholder="渠道" v-model="newsku.channel"></textarea>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid transparent input">
+                                        <textarea type="text" placeholder="品牌" v-model="newsku.brand"></textarea>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid transparent input">
+                                        <textarea type="text" placeholder="购买日期" v-model="newsku.purchaseDate"></textarea>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid transparent input">
+                                        <textarea type="text" placeholder="类别" v-model="newsku.skuType"></textarea>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ui fluid transparent input">
+                                        <textarea type="text" placeholder="链接" v-model="newsku.skuLink"></textarea>
+                                    </div>
+                                </td>
+                                <td class="left aligned">
+                                    <button class="ui small button  fluid red " @click="saveSku">保存</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="ui one cards">
+            <div class="ui card">
+                <div class="content transition sku">
+
+                    <form id="search">
+                        Search <input name="query" v-model="searchQuery">
+                    </form>
+                    <demo-grid
+                       :skulist="skulist"
+                       :columns="gridColumns"
+                       :filter-key="searchQuery"
+                       @render-list="getSkuList"
+                       >
+                    </demo-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/lib/underscore.min.js"></script>
+    <script src="../js/lib/vue.js"></script>
+    <script src="../js/controller/list.js"></script>
+</body>
+
+</html>
