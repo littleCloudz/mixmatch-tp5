@@ -239,6 +239,9 @@ new Vue({
 
 
         },
+        deleteSkuMix: function(){
+
+        },
         updateSkuMixArraySingle: function(skuMixId){
             var self = this;
             var target = _.find(self.skumixlist, function(skumix){

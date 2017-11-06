@@ -253,9 +253,32 @@ body {
                     </div>
                 </div>
                 <div class="extra content">
-                    <div data-rating="4" class="ui star rating left floated"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
-                    <button class="ui button orange mini" @click="updateSkuMix">更新</button>
-                    <span class="right floated" @click="toggleView"><i class="align justify icon"></i></span>
+                <div class="ui stackable three column grid">
+                    <div class="column">
+                        <div data-rating="4" class="ui star rating left floated">
+                        <i class="icon active"></i><i class="icon active"></i><i class="icon active"></i>
+                        <i class="icon active"></i>
+                    </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui mini buttons fluid">
+                        <button class="ui button orange "  @click="updateSkuMix">更新</button>
+                        <div class="or"></div>
+                        <button class="ui button red" @click="deleteSkuMix">删除</button>
+                        <!-- <div class="or"></div> -->
+                        <!-- <button class="ui button grey" @click="cancelSkuMix">取消</button> -->
+                    </div>
+
+                    </div>
+                    <div class="column">
+                        <span class="right floated" @click="toggleView"><i class="align justify icon"></i></span>
+                    </div>
+                  </div>
+
+
+                    
+
+                    
                 </div>
                 <div class="content transition sku">
                     <div class="ui three column grid">
