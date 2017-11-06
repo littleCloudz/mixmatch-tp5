@@ -198,25 +198,30 @@
             max-width: 200px;
         }
     }
+
     .skuType {
         width: 3rem;
     }
+
     .skuStatus {
         width: 3rem;
     }
+
     td.unavailable {
         position: relative;
     }
+
     td.unavailable::before {
         font-family: 'Icons';
         content: "\f00d";
         position: absolute;
         left: 50%;
         top: 50%;
-        transform:translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
         font-size: 6rem;
-        color: rgba(1,1,1,0.3);
+        color: rgba(1, 1, 1, 0.3);
     }
+
     td.unavailable::after {
         font-family: 'Icons';
         content: "";
@@ -226,11 +231,14 @@
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(1,1,1,0.2);
+        background: rgba(1, 1, 1, 0.2);
     }
-    .ui.fixed.table th, .ui.fixed.table td {
+
+    .ui.fixed.table th,
+    .ui.fixed.table td {
         overflow: initial;
     }
+
     )
     </style>
     <!--- Example Javascript -->
@@ -250,7 +258,6 @@
     </script>
 </head>
 
-        
 <body id="example">
     <script type="text/x-template" id="sku-status-selects-template">
         <div class="ui floating labeled dropdown button" tabindex="0">
@@ -266,7 +273,7 @@
             <i class="dropdown icon"></i>
             <div class="menu" tabindex="-1">
                 <div class="item" data-value="1">
-                <span class="canuse">
+                    <span class="canuse">
                         <i class="checkmark icon"></i>
                 </span>
                 </div>
@@ -290,103 +297,107 @@
                         <i class="remove circle utline icon"></i>
                     </span>
                 </div>
-                
             </div>
         </div>
     </script>
     <script type="text/x-template" id="grid-template">
-      <table v-if="filteredData.length" class="ui fixed striped right aligned table ">
-        <thead>
-            <tr>
-                <th class="left aligned" v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">
-                    {{ key | capitalize }}
-                    <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+        <table v-if="filteredData.length" class="ui fixed striped right aligned table ">
+            <thead>
+                <tr>
+                    <th class="left aligned" v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">
+                        {{ key | capitalize }}
+                        <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
                                           </span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <template v-for="entry in filteredData">
-                <tr :data-skuid="entry.barcode">
-                    <td class="left aligned " :class="entry.skuStatus != 1 ? 'unavailable': '' ">
-                        <input class="text updatephoto" type="file" style="width:200px" value="" name="photo">
-                        <a v-if="entry.skuLink" :href="entry.skuLink" target="_blank"><img class="skuphoto" :src="entry.photo"></a>
-                        <img v-else class="skuphoto" :src="entry.photo">
-                    </td>
-                    <td class="left aligned" @click.once="activeDropdown">
-                        <sku-status-selects :selectedvalue="entry.skuStatus" :skuid="entry.barcode" @changeskustatus="vmodelSkuStatus"></sku-status-selects>
-                    </td>
-                    <td>
-                        <div class="ui fluid input transparent">
-                            <textarea v-model="entry.skuName" type="text" placeholder="名称"></textarea>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="ui fluid transparent input">
-                            <textarea type="text" placeholder="尺码" v-model="entry.size"></textarea>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="ui fluid transparent input">
-                            <textarea type="text" placeholder="价格" v-model="entry.price"></textarea>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="ui fluid transparent input">
-                            <textarea type="text" placeholder="品牌" v-model="entry.brand"></textarea>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="ui fluid transparent input">
-                            <textarea type="text" placeholder="渠道" v-model="entry.channel"></textarea>
-                        </div>
-                    </td>
-                    
-                    <td>
-                        <div class="ui fluid transparent input">
-                            <textarea type="text" placeholder="购买日期" v-model="entry.purchaseDate"></textarea>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="ui fluid transparent input">
-                            <textarea type="text" placeholder="类别" v-model="entry.skuType"></textarea>
-                        </div>
-                        <div class="ui fluid multiple search selection dropdown" @click.once="activeDropdown">
-                            <input type="hidden" name="country" value="">
-                            <i class="dropdown icon"></i>
-                            <input class="search" autocomplete="off" tabindex="0" style="width: 9px;"><span class="sizer"></span>
-                            <div class="default text">Select Country</div>
-                            <div class="menu transition hidden" tabindex="-1">
-                                <div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
-                                <div class="item selected" data-value="ax"><i class="ax flag"></i>Aland Islands</div>
-                                <div class="item" data-value="al"><i class="al flag"></i>Albania</div>
-                                <div class="item" data-value="dz"><i class="dz flag"></i>Algeria</div>
-                                <div class="item" data-value="as"><i class="as flag"></i>American Samoa</div>
-                                <div class="item" data-value="ad"><i class="ad flag"></i>Andorra</div>
-                                <div class="item" data-value="ao"><i class="ao flag"></i>Angola</div>
-                                <div class="item" data-value="ai"><i class="ai flag"></i>Anguilla</div>
-                                <div class="item" data-value="ag"><i class="ag flag"></i>Antigua</div>
-                                <div class="item" data-value="ar"><i class="ar flag"></i>Argentina</div>
-                                <div class="item" data-value="am"><i class="am flag"></i>Armenia</div>
-                            </div>
-                        </div>
-                        <div class="ui mini buttons fluid">
-                            <button class="ui button orange " @click="updateSku">更新</button>
-                            <div class="or"></div>
-                            <button class="ui button red" @click="deleteSku">删除</button>
-                            <div class="or"></div>
-                            <button class="ui button grey" @click="cancelSku">取消</button>
-                        </div>
-                    </td>
+                    </th>
                 </tr>
-            </template>
-        </tbody>
-    </table>
-    <p v-else>No matches found.</p>
-    </script>
+            </thead>
+            <tbody>
+                <template v-for="entry in filteredData">
+                    <tr :data-skuid="entry.barcode">
+                        <td rowspan="2" class="left aligned " :class="entry.skuStatus != 1 ? 'unavailable': '' ">
+                            <input class="text updatephoto" type="file" style="width:200px" value="" name="photo">
+                            <a v-if="entry.skuLink" :href="entry.skuLink" target="_blank"><img class="skuphoto" :src="entry.photo"></a>
+                            <img v-else class="skuphoto" :src="entry.photo">
+                        </td>
+                        <td rowspan="2" class="left aligned" @click.once="activeDropdown">
+                            <sku-status-selects :selectedvalue="entry.skuStatus" :skuid="entry.barcode" @changeskustatus="vmodelSkuStatus"></sku-status-selects>
+                        </td>
+                        <td rowspan="2">
+                            <div class="ui fluid input transparent">
+                                <textarea v-model="entry.skuName" type="text" placeholder="名称"></textarea>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="ui fluid transparent input">
+                                <textarea type="text" placeholder="尺码" v-model="entry.size"></textarea>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="ui fluid transparent input">
+                                <textarea type="text" placeholder="价格" v-model="entry.price"></textarea>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="ui fluid transparent input">
+                                <textarea type="text" placeholder="品牌" v-model="entry.brand"></textarea>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="ui fluid transparent input">
+                                <textarea type="text" placeholder="渠道" v-model="entry.channel"></textarea>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="ui fluid transparent input">
+                                <textarea type="text" placeholder="购买日期" v-model="entry.purchaseDate"></textarea>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="ui fluid transparent input">
+                                <textarea type="text" placeholder="类别" v-model="entry.skuType"></textarea>
+                            </div>
+                        </td>
+                        <td colspan="3">
 
+                            <div class="ui fluid multiple search selection dropdown" @click.once="activeDropdown">
+                                <input type="hidden" name="country" value="">
+                                <i class="dropdown icon"></i>
+                                <input class="search" autocomplete="off" tabindex="0" style="width: 9px;"><span class="sizer"></span>
+                                <div class="default text">Select Country</div>
+                                <div class="menu transition hidden" tabindex="-1">
+                                    <div class="item" data-value="af"><i class="af flag"></i>Afghanistan</div>
+                                    <div class="item selected" data-value="ax"><i class="ax flag"></i>Aland Islands</div>
+                                    <div class="item" data-value="al"><i class="al flag"></i>Albania</div>
+                                    <div class="item" data-value="dz"><i class="dz flag"></i>Algeria</div>
+                                    <div class="item" data-value="as"><i class="as flag"></i>American Samoa</div>
+                                    <div class="item" data-value="ad"><i class="ad flag"></i>Andorra</div>
+                                    <div class="item" data-value="ao"><i class="ao flag"></i>Angola</div>
+                                    <div class="item" data-value="ai"><i class="ai flag"></i>Anguilla</div>
+                                    <div class="item" data-value="ag"><i class="ag flag"></i>Antigua</div>
+                                    <div class="item" data-value="ar"><i class="ar flag"></i>Argentina</div>
+                                    <div class="item" data-value="am"><i class="am flag"></i>Armenia</div>
+                                </div>
+                            </div>
+                        </td>
+                        <tr>
+                            <td colspan="3">
+                                <div class="ui mini buttons fluid">
+                                    <button class="ui button orange " @click="updateSku">更新</button>
+                                    <div class="or"></div>
+                                    <button class="ui button red" @click="deleteSku">删除</button>
+                                    <div class="or"></div>
+                                    <button class="ui button grey" @click="cancelSku">取消</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <p v-else>No matches found.</p>
+    </script>
     <!-- demo root element -->
-   <!--  <div id="app">
+    <!--  <div id="app">
       
     </div> -->
     <!-- <div class="ui sticky" >
@@ -397,16 +408,12 @@
           </div>
         </div>
  -->
-
-        <!-- demo root element -->
-        
-<div id="app">
-    
+    <!-- demo root element -->
+    <div id="app">
         <div class="ui black big launch right attached fixed button">
             <i class="content icon"></i>
             <span class="text">菜单</span>
         </div>
-
         <div class="ui one cards">
             <div class="ui card">
                 <div class="content transition sku">
@@ -508,16 +515,11 @@
         <div class="ui one cards">
             <div class="ui card">
                 <div class="content transition sku">
-
                     <form id="search">
-                        Search <input name="query" v-model="searchQuery">
+                        Search
+                        <input name="query" v-model="searchQuery">
                     </form>
-                    <demo-grid
-                       :skulist="skulist"
-                       :columns="gridColumns"
-                       :filter-key="searchQuery"
-                       @render-list="getSkuList"
-                       >
+                    <demo-grid :skulist="skulist" :columns="gridColumns" :filter-key="searchQuery" @render-list="getSkuList">
                     </demo-grid>
                 </div>
             </div>
