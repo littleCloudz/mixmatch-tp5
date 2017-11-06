@@ -42,6 +42,7 @@ class Index
         }
         return json($result);
     }
+
     public function addSku()
     {
         $skuModel = new Sku;
@@ -96,6 +97,14 @@ class Index
             ];
         }
         return json($result);
+
+    }
+    public function updateSku()
+    {
+     
+
+
+
 
     }
     public function modelTest()
@@ -206,21 +215,56 @@ class Index
         // ]);
         // dump($res);//插入数据的行数
 
+        // $skuModel = new Sku;
+        // $res = $skuModel->saveAll([
+        //     'skuName' => '我的'
+        // ],[
+        //     'skuName' => '你的'
+        // ]); //无效啊？？
+
+
+        // $res = Sku::all();
+        // foreach($res as $val)
+        // {
+        //     dump($val->toArray());
+        // }
+
+        //更新数据
+        // $res = Sku::update([
+        //     'barcode' => 1,
+        //     'skuName' => '测试啦啦啦啦'
+        // ]);
+        // dump($res);
+
+        // $res = Sku::update([
+        //     'skuName' => 'hello'
+        // ],['barcode'=>2]);
+        // dump($res);
+
+        // $res = Sku::update([
+        //     'skuName' => 'woshi'
+        // ], function($query){
+        //     $query->where("barcode", 'LT', 5);
+        // });
+        // dump($res);
+
+        //建议 使用 返回被更新数据的行数
+        // $res = Sku::where("barcode", "<", 6)
+        //         ->update([
+        //             'skuName' => 'hll'
+        //         ]);
+        // dump($res);
+
+
+        // $skuModel = Sku::get(1);
+        // $skuModel->skuName = '123';
+        // $res = $skuModel->save();
+        // dump($res);
+
         $skuModel = new Sku;
-        $res = $skuModel->saveAll([
-            'skuName' => '我的'
-        ],[
-            'skuName' => '你的'
-        ]); //无效啊？？
-
-
-        $res = Sku::all();
-        foreach($res as $val)
-        {
-            dump($val->toArray());
-        }
-
-
+        $res = $skuModel->save([
+                'skuName' => '333'
+            ], ['barcode'=>5]);
     }
     public function mixmatch()
     {

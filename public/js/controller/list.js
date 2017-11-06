@@ -114,8 +114,9 @@ Vue.component('demo-grid', {
                 method: "POST",
                 // url: "http://127.0.0.1/mixmatch/Api/SkuAction.php?action=update",
                 // url: "http://192.168.1.5/mixmatch/Api/SkuAction.php?action=update",
-                url: "http://10.32.80.152:8099/mixmatch/Api/SkuAction.php?action=update",
+                // url: "http://10.32.80.152:8099/mixmatch/Api/SkuAction.php?action=update",
                 // url: "http://192.168.0.104/mixmatch/Api/SkuAction.php?action=update",
+                url: "http://10.32.80.152:8099/mixmatch-tp5/public/index/index/updateSku",
                 data: formData,
                 processData: false,
                 contentType: false
@@ -166,7 +167,9 @@ Vue.component('demo-grid', {
                 console.log(res)
                 // self.getSkuList();
 
-                self.$emit('renderList')
+                // self.$emit('renderList')
+                var self = this;
+                self.getSkuList();
 
             });
         },
