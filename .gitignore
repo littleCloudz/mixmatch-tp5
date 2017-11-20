@@ -4,3 +4,4 @@ composer.lock
 thinkphp
 app/api/controller/myMoney.xls
 app/index/controller/myMoney.xls
+public/upload/*

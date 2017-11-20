@@ -1,7 +1,51 @@
+目前此项目只提供接口：（脱胎于项目myfunds）
+http://10.32.80.152:8099/mixmatch/Api/GetSkuList.php
+http://10.32.80.152:8099/mixmatch/Api/GetSkuMixList.php
+
+
+
+前端页面：
+http://10.32.80.152:8099/mixmatch/pages/index.html
+
+
+
+
+新增sku记录：modal
+https://semantic-ui.com/modules/modal.html#/settings
+http://jqueryui.com/datepicker/#date-formats
+
+初始化数据库：
+D:\Users\zhangxy\Documents\Learning\www\mysql\bin\mixmatch_db
+
+
+
+cd D:\Users\zhangxy\Documents\Learning\www\mysql\bin
+net start mysql
+mysql -u root -p
+123456
+
+source D:\Users\zhangxy\Documents\Learning\www\mysql\bin\mixmatch_db.sql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+以下（脱胎于项目myfunds）
 
 http://127.0.0.1:8099/myfunds/public/news/5.html
 http://127.0.0.1:8099/myfunds/public/api/excel/read
 http://127.0.0.1:8099/myfunds/public/index.php/index/index/read
+
 
 
 thinkphp5：github.com/top-think

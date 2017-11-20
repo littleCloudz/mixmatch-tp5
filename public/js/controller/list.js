@@ -120,56 +120,18 @@ Vue.component('demo-grid', {
                 data: formData,
                 processData: false,
                 contentType: false
-                // data: {
-                //     sku: {
-                //         barcode: barcode,
-                //         skuName: target.skuName,
-                //         skuType: target.skuType,
-                //         skuStatus: target.skuStatus,
-                //         channel: target.channel,
-                //         brand: target.brand,
-                //         size: target.size,
-                //         price: target.price,
-                //         photo: target.photo,
-                //         purchaseDate: target.purchaseDate
-                //     }
-                // }
             }).always(function(res) {
                 //假数据START
-                // res ={
-                //     "result":[
-                //         {
-                //             "name":"1D风险价值",
-                //             "per95":"0.64",
-                //             "per99":"0.63"
-                //         },
-                //         {
-                //             "name":"1D预期收益不足",
-                //             "per95":"0.64",
-                //             "per99":"0.52"
-                //         },
-                //         {
-                //             "name":"10D风险价值",
-                //             "per95":"0.44",
-                //             "per99":"0.63"
-                //         },
-                //         {
-                //             "name":"10D预期收益不足",
-                //             "per95":"0.78",
-                //             "per99":"0.63"
-                //         }],
-                //         "code":"",
-                //         "resultMassage":"",
-                //         "success":true
-                //     }
+               
                 //假数据END
-                // alert(JSON.stringify(res));
-                console.log(res)
-                // self.getSkuList();
-
-                // self.$emit('renderList')
                 var self = this;
-                self.getSkuList();
+
+                console.log(res)
+                if(res.success) {
+                    self.$emit('renderList')
+                } else {
+                    alert('更新失败')
+                }
 
             });
         },

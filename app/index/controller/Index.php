@@ -16,6 +16,8 @@ class Index
     {
         config('before', 'beforeAction');
     }
+
+
     public function getSkuList()
     {
         $res = Sku::all(function($query){
@@ -29,19 +31,7 @@ class Index
         }
         return json($result);
     }
-    public function getSkuMixList()
-    {
-        $res = Skumix::all(function($query){
-            $query->order("id DESC");
-                
-        });
-        $result = [];
-        foreach($res as $val)
-        {
-            $result[] = $val->toArray();
-        }
-        return json($result);
-    }
+    
 
     public function addSku()
     {
@@ -78,6 +68,7 @@ class Index
         $skuModel->size = $_POST['size'];
         $skuModel->price = $_POST['price'];
         $skuModel->purchaseDate = $_POST['purchaseDate'];
+        $skuModel->archiveDate = $_POST['archiveDate'];
         $skuModel->photo = $photo;
         $skuModel->allowField(true)->save();
         // dump($skuModel->barcode);
@@ -99,16 +90,113 @@ class Index
         return json($result);
 
     }
-    public function updateSku()
+
+
+    public function updateSku() 
     {
-     
+        $barcode = $_POST['barcode'];
 
+        $skuModel = Sku::get($barcode);
 
+        /*处理图片上传*/
+        require_once("D:/Users/zhangxy/Documents/Learning/www/Apache24/htdocs/mixmatch-tp5/app/index/util/upload.class.php");
+        require_once("D:/Users/zhangxy/Documents/Learning/www/Apache24/htdocs/mixmatch-tp5/app/index/util/util.php");
 
+        $photo = "../public/upload/NoImage.jpg"; 
+        if (isset($_FILES['photo']) && $_FILES['photo']['name'] != ''){
+            /*--  实例化上传类  --*/
+            $file = $_FILES['photo'];
+            $upload_path = '../public/upload';
+            $allow_type = array('jpg','bmp','png','gif','jpeg');
+            // $max_size=2048000;
+            $max_size=5120000;
+            $upload = new \upFiles($file, $upload_path, $max_size, $allow_type);
 
+            $upload->upload();
+
+            $pic = $upload->getSaveFileInfo();
+            // $photo = substr($pic['path'], 2)."/".$pic['savename']; 
+            $photo = "../../../mixmatch-tp5".substr($pic['path'], 2)."/".$pic['savename']; 
+            // $photo = $pic['path']."/".$pic['savename']; 
+
+            $skuModel->photo = $photo;
+        }
+
+        $skuModel->skuName = $_POST['skuName'];
+        $skuModel->skuType = $_POST['skuType'];
+        $skuModel->skuLink = isset($_POST['skuLink']) && $_POST['skuLink'];
+        $skuModel->skuStatus = $_POST['skuStatus'];
+        $skuModel->channel = $_POST['channel'];
+        $skuModel->brand = $_POST['brand'];
+        $skuModel->size = $_POST['size'];
+        $skuModel->price = $_POST['price'];
+        $skuModel->purchaseDate = $_POST['purchaseDate'];
+        $skuModel->archiveDate = $_POST['archiveDate'];
+        $skuModel->allowField(true)->save();
+        // dump($skuModel->barcode);
+        if($skuModel->barcode) {
+            $result = (object) [
+                'result' => [],
+                'code'=> '200',
+                'resultMassage'=> '更新sku成功'.$barcode,
+                "success"=>true
+            ];
+        } else {
+             $result = (object) [
+                'result' => [],
+                'code'=> '500',
+                'resultMassage'=> '失败',
+                "success"=>false
+            ];
+        }
+        return json($result);
     }
+
+
+    public function deleteSku()
+    {
+        $barcode = $_POST['barcode'];
+        $res = Sku::destroy($barcode);//主键
+        if($res) {
+            $result = (object) [
+                'result' => [],
+                'code'=> '200',
+                'resultMassage'=> '删除sku成功'.$barcode,
+                "success"=>true
+            ];
+        } else {
+             $result = (object) [
+                'result' => [],
+                'code'=> '500',
+                'resultMassage'=> '失败',
+                "success"=>false
+            ];
+        }
+        return json($result);
+    }
+
+
+    public function getSkuMixList()
+    {
+        $res = Skumix::all(function($query){
+            $query->order("id DESC");
+                
+        });
+        $result = [];
+        foreach($res as $val)
+        {
+            $result[] = $val->toArray();
+        }
+        return json($result);
+    }
+
+
     public function modelTest()
     {
+
+        // ┏━━━━┓
+        // ┃查询数据┃
+        // ┗━━━━┛
         //1.// use app\index\model\Sku; 推荐
         // $res = Sku::get(1);
         // $res = $res->toArray();
@@ -171,7 +259,9 @@ class Index
         // $res = Sku::column("skuStatus","skuName");
         // dump($res);
 
-        //添加数据
+        // ┏━━━━┓
+        // ┃添加数据┃
+        // ┗━━━━┛
         // $res = Sku::create([
         //     'skuName' => '测试',
         //     'skuType' => 1,
@@ -229,7 +319,9 @@ class Index
         //     dump($val->toArray());
         // }
 
-        //更新数据
+        // ┏━━━━┓
+        // ┃更新数据┃
+        // ┗━━━━┛
         // $res = Sku::update([
         //     'barcode' => 1,
         //     'skuName' => '测试啦啦啦啦'
@@ -261,10 +353,60 @@ class Index
         // $res = $skuModel->save();
         // dump($res);
 
-        $skuModel = new Sku;
-        $res = $skuModel->save([
-                'skuName' => '333'
-            ], ['barcode'=>5]);
+        // $skuModel = new Sku;
+        // $res = $skuModel->save([
+        //         'skuName' => '333'
+        //     ], ['barcode'=>5]);
+
+
+        // ┏━━━━┓
+        // ┃删除数据┃
+        // ┗━━━━┛
+        // $db = Db::name('sku');
+        // $res = $db->where([
+        //     'barcode' => 1
+        //     ])->delete();
+        // dump($res);
+
+
+        // $db = Db::name('sku');
+        // $res = $db->delete(2); //主键
+        // dump($res);
+
+        // $db = Db::name('sku');
+        // $res = $db->where("1=1")->delete(); //删除所有记录 ，不要使用
+        // dump($res);
+
+
+        // $res = Sku::destroy(18);//主键
+        // dump($res);
+
+        // $res = Sku::destroy(function($query){
+        //     $query->where("barcode", "<", 5);
+        // });
+        // dump($res);
+
+
+        // $skuModel = Sku::get(9);
+        // $res = $skuModel->delete();
+        // dump($res);
+
+        // $res = Sku::where("barcode", 5)
+        //         ->delete();
+        // dump($res);
+
+        // $res = Sku::where("barcode", "<", 10)
+        // ->delete();
+        // dump($res);        
+
+        // $res = Sku::where("1=1")
+        // ->delete();
+        // dump($res);
+
+
+
+
+
     }
     public function mixmatch()
     {
